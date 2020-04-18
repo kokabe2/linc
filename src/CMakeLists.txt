@@ -6,6 +6,7 @@ include_directories(
 
 add_library(
     linc
+    response/simple_response.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/heap_usage.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/list/list_node.c
@@ -17,6 +18,7 @@ add_library(
 add_executable(
     gtests
     main.cpp
+    response/simple_response_test.cpp
     )
 
 add_dependencies(gtests googletest)
