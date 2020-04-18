@@ -8,7 +8,7 @@ typedef struct {
   ResponseInterfaceStruct impl;
   int status_code;
   void* body;
-  DeleteBodyDelegate Delete;
+  DeleteDelegate Delete;
 } ResponseBaseStruct, *ResponseBase;
 
 static void Delete(Response* base) {
@@ -37,7 +37,7 @@ static void SetStatusCode(Response self, int status_code) { ((ResponseBase)self)
 
 static void SetBody(Response self, void* body) { ((ResponseBase)self)->body = body; }
 
-static void SetBodyDeleter(Response self, DeleteBodyDelegate delegate) { ((ResponseBase)self)->Delete = delegate; }
+static void SetBodyDeleter(Response self, DeleteDelegate delegate) { ((ResponseBase)self)->Delete = delegate; }
 
 static const ResponseBaseMethodStruct kTheMethod = {
     .New = New,
