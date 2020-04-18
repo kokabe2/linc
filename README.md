@@ -1,6 +1,6 @@
 # Linc [![pipeline status](https://gitlab.com/kokabe/linc/badges/master/pipeline.svg)](https://gitlab.com/kokabe/linc/commits/master) [![coverage report](https://gitlab.com/kokabe/linc/badges/master/coverage.svg)](https://gitlab.com/kokabe/linc/commits/master) [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-Linc is not Web API, but internal API among components.
+Linc is not Web API, but internal API among static components.
 
 ## Overview
 
@@ -72,7 +72,7 @@ void main(void) {
 #### Advanced
 
 ```c
-#include "linc/v1/default_request.h"
+#include "linc/v1/http_method_request.h"
 #include "linc/v1/simple_client.h"
 #include "test_responder.h"
 #include "sample_resource.h"
@@ -83,8 +83,7 @@ static void SendDelegate(int status, const void*response) {
 
 void main(void) {
   SampleRequestStruct body = {6, "param"};
-  Request req = defaultRequest->New("POST", "api.test.domain/v1/sample");
-  req->SetBody(req, &body);
+  Request req = httpMethodRequest->New("POST", "api.test.domain/v1/sample", &body);
   Responder r = testResponder->New();
   Client client = simpleClient->New(r);
   client->Do(client, req);
