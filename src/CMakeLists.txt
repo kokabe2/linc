@@ -7,6 +7,7 @@ include_directories(
 add_library(
     linc
     request/default_request.c
+    response/response_base.c
     response/simple_response.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/heap_usage.c
@@ -20,6 +21,7 @@ add_executable(
     gtests
     main.cpp
     request/default_request_test.cpp
+    response/response_base_test.cpp
     response/simple_response_test.cpp
     )
 
