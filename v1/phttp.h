@@ -4,11 +4,9 @@
 #define V1_PHTTP_H_
 
 #include "bleu/v1/runtime_error.h"
-#include "request.h"
-#include "responder.h"
+#include "handler.h"
 #include "response.h"
 
-typedef void (*PhttpHandlerDelegate)(Request req, Responder r);
 typedef struct {
   const int StatusContinue;
   const int StatusSwitchingProtocols;
