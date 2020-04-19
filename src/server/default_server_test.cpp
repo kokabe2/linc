@@ -77,7 +77,7 @@ TEST_F(DefaultServerTest, GetRouter) { EXPECT_EQ(router, serverBase->GetRouter(s
 TEST_F(DefaultServerTest, Post) {
   req = httpMethodRequest->New("POST", "api.test.domain/v1/sample", dummy_data);
 
-  serverBase->DoPost(server, req, r);
+  serverBase->Do(server, req, r);
 
   EXPECT_EQ(kStatusInternalServerError, res->GetStatusCode(res));
   EXPECT_EQ(dummy_data, res->GetBody(res));
@@ -86,7 +86,7 @@ TEST_F(DefaultServerTest, Post) {
 TEST_F(DefaultServerTest, Put) {
   req = httpMethodRequest->New("PUT", "api.test.domain/v1/users/kokabe/reports", dummy_data);
 
-  serverBase->DoPut(server, req, r);
+  serverBase->Do(server, req, r);
 
   EXPECT_EQ(kStatusCreated, res->GetStatusCode(res));
   EXPECT_STREQ("kokabe", (const char*)res->GetBody(res));
@@ -95,7 +95,7 @@ TEST_F(DefaultServerTest, Put) {
 TEST_F(DefaultServerTest, Get) {
   req = httpMethodRequest->New("GET", "api.test.domain/v1/users/kokabe/reports/256", NULL);
 
-  serverBase->DoGet(server, req, r);
+  serverBase->Do(server, req, r);
 
   EXPECT_EQ(kStatusOK, res->GetStatusCode(res));
   EXPECT_STREQ("256", (const char*)res->GetBody(res));
@@ -104,7 +104,7 @@ TEST_F(DefaultServerTest, Get) {
 TEST_F(DefaultServerTest, Delete) {
   req = httpMethodRequest->New("DELETE", "api.test.domain/v1/users/kokabe/reports/6", NULL);
 
-  serverBase->DoDelete(server, req, r);
+  serverBase->Do(server, req, r);
 
   EXPECT_EQ(kStatusMethodNotAllowed, res->GetStatusCode(res));
   EXPECT_STREQ("kokabe, 6", (const char*)res->GetBody(res));
@@ -113,8 +113,17 @@ TEST_F(DefaultServerTest, Delete) {
 TEST_F(DefaultServerTest, UseHttpMethodWithBadUri) {
   req = httpMethodRequest->New("GET", "api.test.domain/v1/users/kokabe/stars/28", NULL);
 
-  serverBase->DoGet(server, req, r);
+  serverBase->Do(server, req, r);
 
   EXPECT_EQ(kStatusNotFound, res->GetStatusCode(res));
+  EXPECT_STREQ(NULL, (const char*)res->GetBody(res));
+}
+
+TEST_F(DefaultServerTest, UseHttpMethodWithNotImplementedMethod) {
+  req = httpMethodRequest->New("PATCH", "api.test.domain/v1/users/kokabe/reports/6", NULL);
+
+  serverBase->Do(server, req, r);
+
+  EXPECT_EQ(kStatusNotImplemented, res->GetStatusCode(res));
   EXPECT_STREQ(NULL, (const char*)res->GetBody(res));
 }

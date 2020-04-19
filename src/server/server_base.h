@@ -11,10 +11,7 @@
 typedef struct {
   const char* (*GetDomain)(Server self);
   Router (*GetRouter)(Server self);
-  void (*DoPost)(Server self, Request req, Responder r);
-  void (*DoPut)(Server self, Request req, Responder r);
-  void (*DoGet)(Server self, Request req, Responder r);
-  void (*DoDelete)(Server self, Request req, Responder r);
+  void (*Do)(Server self, Request req, Responder r);
 } ServerBaseMethodStruct;
 typedef const ServerBaseMethodStruct* ServerBaseMethod;
 
