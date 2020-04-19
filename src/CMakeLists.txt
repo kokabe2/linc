@@ -8,6 +8,7 @@ include_directories(
 add_library(
     linc
     request/default_request.c
+    request/http_method_request.c
     request/request_base.c
     responder/default_responder.c
     responder/responder_base.c
@@ -27,6 +28,7 @@ add_executable(
     gtests
     main.cpp
     request/default_request_test.cpp
+    request/http_method_request_test.cpp
     responder/default_responder_test.cpp
     response/default_response_test.cpp
     response/simple_response_test.cpp
