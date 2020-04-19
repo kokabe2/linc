@@ -8,6 +8,7 @@ include_directories(
 add_library(
     linc
     request/default_request.c
+    request/request_base.c
     responder/default_responder.c
     responder/responder_base.c
     response/default_response.c
