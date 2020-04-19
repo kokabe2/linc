@@ -9,6 +9,7 @@ add_library(
     linc
     request/default_request.c
     responder/default_responder.c
+    responder/responder_base.c
     response/default_response.c
     response/response_base.c
     response/simple_response.c

@@ -12,6 +12,7 @@ mkdir %OUTPUT_DIR% > NUL 2>&1
            -include=v1/,src/,external/ ^
            src/request/default_request.c ^
            src/responder/default_responder.c ^
+           src/responder/responder_base.c ^
            src/response/default_response.c ^
            src/response/response_base.c ^
            src/response/simple_response.c ^
