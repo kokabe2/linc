@@ -22,7 +22,7 @@ TEST_F(DefaultRequestTest, GetUri) { EXPECT_STREQ("api.test.domain/v1.1/users/ko
 
 TEST_F(DefaultRequestTest, GetDomain) { EXPECT_STREQ("api.test.domain", req->GetDomain(req)); }
 
-TEST_F(DefaultRequestTest, GetApiVersion) { EXPECT_STREQ("v1.1", req->GetApiVersion(req)); }
+TEST_F(DefaultRequestTest, GetPath) { EXPECT_STREQ("/v1.1/users/kokabe/reports/256", req->GetPath(req)); }
 
 TEST_F(DefaultRequestTest, GetMethod) { EXPECT_STREQ("GET", req->GetMethod(req)); }
 

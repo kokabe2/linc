@@ -29,7 +29,11 @@ static const char* GetUri(Request self) { return ((DefaultRequest)self)->request
 
 static const char* GetDomain(Request self) { return path->Directory(((DefaultRequest)self)->uri, 0); }
 
-static const char* GetApiVersion(Request self) { return path->Directory(((DefaultRequest)self)->uri, 1); }
+static const char* GetPath(Request base) {
+  DefaultRequest self = (DefaultRequest)base;
+  int index = strings->Index(self->requested, "/");
+  return &self->requested[index];
+}
 
 static const char* GetMethod(Request self) { return ((DefaultRequest)self)->method; }
 
@@ -53,7 +57,7 @@ inline static void InstallInterface(DefaultRequest self) {
   self->impl.Delete = Delete;
   self->impl.GetUri = GetUri;
   self->impl.GetDomain = GetDomain;
-  self->impl.GetApiVersion = GetApiVersion;
+  self->impl.GetPath = GetPath;
   self->impl.GetMethod = GetMethod;
   self->impl.GetBody = GetBody;
   self->impl.GetParam = GetParam;
