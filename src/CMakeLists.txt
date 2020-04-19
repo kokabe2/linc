@@ -27,7 +27,6 @@ add_executable(
     request/default_request_test.cpp
     responder/default_responder_test.cpp
     response/default_response_test.cpp
-    response/response_base_test.cpp
     response/simple_response_test.cpp
     phttp_test.cpp
     )
