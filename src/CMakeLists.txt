@@ -17,6 +17,7 @@ add_library(
     response/simple_response.c
     router/default_router.c
     router/router_base.c
+    server/default_server.c
     server/server_base.c
     phttp.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
@@ -36,6 +37,7 @@ add_executable(
     response/default_response_test.cpp
     response/simple_response_test.cpp
     router/default_router_test.cpp
+    server/default_server_test.cpp
     phttp_test.cpp
     )
 
