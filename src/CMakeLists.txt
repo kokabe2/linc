@@ -9,6 +9,7 @@ add_library(
     linc
     request/default_request.c
     responder/default_responder.c
+    response/default_response.c
     response/response_base.c
     response/simple_response.c
     phttp.c
@@ -25,6 +26,7 @@ add_executable(
     main.cpp
     request/default_request_test.cpp
     responder/default_responder_test.cpp
+    response/default_response_test.cpp
     response/response_base_test.cpp
     response/simple_response_test.cpp
     phttp_test.cpp
