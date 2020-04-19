@@ -8,10 +8,10 @@
 typedef struct RouterInterfaceStruct* Router;
 typedef struct RouterInterfaceStruct {
   void (*Delete)(Router* self);
-  void (*POST)(Router self, const char* uri, PhttpHandlerDelegate handler);
-  void (*PUT)(Router self, const char* uri, PhttpHandlerDelegate handler);
-  void (*GET)(Router self, const char* uri, PhttpHandlerDelegate handler);
-  void (*DELETE)(Router self, const char* uri, PhttpHandlerDelegate handler);
+  void (*POST)(Router self, const char* pattern, PhttpHandlerDelegate handler);
+  void (*PUT)(Router self, const char* pattern, PhttpHandlerDelegate handler);
+  void (*GET)(Router self, const char* pattern, PhttpHandlerDelegate handler);
+  void (*DELETE)(Router self, const char* pattern, PhttpHandlerDelegate handler);
 } RouterInterfaceStruct;
 
 #endif  // V1_ROUTER_H_
