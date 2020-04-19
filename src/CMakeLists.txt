@@ -15,6 +15,7 @@ add_library(
     response/default_response.c
     response/response_base.c
     response/simple_response.c
+    router/router_base.c
     phttp.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/heap_usage.c
