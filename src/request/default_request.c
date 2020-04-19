@@ -7,7 +7,8 @@
 
 static Request New(const char* method, const char* uri, const char* pattern, const void* body) {
   RequestBase self = heap->New(sizeof(RequestBaseStruct));
-  _requestBase->Super(self, method, uri, pattern);
+  _requestBase->Super(self, method, uri);
+  requestBase->SetPattern((Request)self, pattern);
   requestBase->SetBody((Request)self, body);
   return (Request)self;
 }

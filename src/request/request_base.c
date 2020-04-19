@@ -7,12 +7,16 @@
 #include "bleu/v1/heap.h"
 #include "request/request_base_protected.h"
 
+inline static void DeletePatternIfExists(RequestBase self) {
+  if (self->pattern != NULL) path->Delete(&self->pattern);
+}
+
 static void Delete(Request* base) {
   RequestBase self = (RequestBase)*base;
   strings->Delete(&self->requested);
   strings->Delete(&self->method);
   path->Delete(&self->uri);
-  path->Delete(&self->pattern);
+  DeletePatternIfExists(self);
   heap->Delete((void**)base);
 }
 
@@ -55,12 +59,11 @@ inline static void InstallInterface(RequestBase self) {
   self->impl.ToInt = ToInt;
 }
 
-static void Super(RequestBase self, const char* method, const char* uri, const char* pattern) {
+static void Super(RequestBase self, const char* method, const char* uri) {
   InstallInterface(self);
   self->method = strings->New(method);
   self->requested = strings->New(uri);
   self->uri = path->New(uri);
-  self->pattern = path->New(pattern);
 }
 
 static const RequestBaseProtectedMethodStruct kProtectedMethod = {
@@ -69,9 +72,16 @@ static const RequestBaseProtectedMethodStruct kProtectedMethod = {
 
 const RequestBaseProtectedMethod _requestBase = &kProtectedMethod;
 
+static void SetPattern(Request base, const void* pattern) {
+  RequestBase self = (RequestBase)base;
+  DeletePatternIfExists(self);  // Basically it's not necessary 'cause SetPattern() shall be called only once.
+  self->pattern = path->New(pattern);
+}
+
 static void SetBody(Request self, const void* body) { ((RequestBase)self)->body = body; }
 
 static const RequestBaseMethodStruct kTheMethod = {
+    .SetPattern = SetPattern,
     .SetBody = SetBody,
 };
 

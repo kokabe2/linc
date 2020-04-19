@@ -7,7 +7,8 @@
 #include "request.h"
 
 typedef struct {
-  void (*SetBody)(Request self, const void* body);  //
+  void (*SetPattern)(Request self, const void* pattern);
+  void (*SetBody)(Request self, const void* body);
 } RequestBaseMethodStruct;
 typedef const RequestBaseMethodStruct* RequestBaseMethod;
 

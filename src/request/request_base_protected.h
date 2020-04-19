@@ -15,7 +15,7 @@ typedef struct {
   const void* body;
 } RequestBaseStruct, *RequestBase;
 typedef struct {
-  void (*Super)(RequestBase self, const char* method, const char* uri, const char* pattern);
+  void (*Super)(RequestBase self, const char* method, const char* uri);
 } RequestBaseProtectedMethodStruct;
 typedef const RequestBaseProtectedMethodStruct* RequestBaseProtectedMethod;
 
