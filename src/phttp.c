@@ -9,6 +9,7 @@
 #include "bleu/v1/path.h"
 #include "request/default_request.h"
 #include "responder/default_responder.h"
+#include "response/default_response.h"
 #include "response/simple_response.h"
 
 typedef struct {
@@ -84,7 +85,7 @@ inline static Response HttpMethodTemplate(const char* method, const char* uri, c
   if (node != NULL) {
     Request req = defaultRequest->New(method, uri, node->uri);
     defaultRequest->SetBody(req, body);
-    Response res = responseBase->New();
+    Response res = defaultResponse->New();
     Responder r = defaultResponder->New(res);
     node->handler(req, r);
     req->Delete(&req);
