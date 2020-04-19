@@ -3,7 +3,7 @@
 #ifndef SRC_RESPONSE_SIMPLE_RESPONSE_H_
 #define SRC_RESPONSE_SIMPLE_RESPONSE_H_
 
-#include "response_base.h"
+#include "response/response_base.h"
 
 typedef struct {
   Response (*New)(int status_code);  // Extends ResponseBase

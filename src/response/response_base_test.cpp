@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "response_base.h"
+#include "response/response_base.h"
 }
 
 namespace {

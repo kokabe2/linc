@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "default_request.h"
+#include "request/default_request.h"
 }
 
 class DefaultRequestTest : public ::testing::Test {

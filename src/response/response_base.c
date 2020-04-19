@@ -1,6 +1,6 @@
 ﻿// Copyright(c) 2020 Ken Okabe
 // This software is released under the MIT License, see LICENSE.
-#include "response_base.h"
+#include "response/response_base.h"
 
 #include "bleu/v1/heap.h"
 
