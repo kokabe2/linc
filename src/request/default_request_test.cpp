@@ -13,7 +13,7 @@ class DefaultRequestTest : public ::testing::Test {
 
   virtual void SetUp() {
     req = defaultRequest->New("GET", "api.test.domain/v1.1/users/kokabe/reports/256",
-                              "api.test.domain/v1.1/users/:username/reports/:id", dummy_data);
+                              "/v1.1/users/:username/reports/:id", dummy_data);
   }
 
   virtual void TearDown() { req->Delete(&req); }

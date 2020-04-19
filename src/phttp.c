@@ -79,11 +79,16 @@ static void Handle(const char* uri, PhttpHandlerDelegate handler) {
 
 static RuntimeError ListenAndServe(const char* addr, void* reserved) { return NULL; }
 
+inline static const char* GetPattern(HandlerNode node) {
+  int index = strings->Index(node->uri, "/");
+  return &node->uri[index];
+}
+
 inline static Response HttpMethodTemplate(const char* method, const char* uri, const void* body) {
   Phttp self = GetInstance();
   HandlerNode node = list->Find(self->handlers, uri);
   if (node != NULL) {
-    Request req = defaultRequest->New(method, uri, node->uri, body);
+    Request req = defaultRequest->New(method, uri, GetPattern(node), body);
     Response res = defaultResponse->New();
     Responder r = defaultResponder->New(res);
     node->handler(req, r);

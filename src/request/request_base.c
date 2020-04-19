@@ -39,9 +39,9 @@ inline static bool IsNamedParameter(Strings s) { return s[0] == ':'; }
 static const char* GetParam(Request base, const char* key) {
   RequestBase self = (RequestBase)base;
   const char* value = NULL;
-  for (int i = 2; i < path->Count(self->uri) && value == NULL; ++i) {
+  for (int i = 1; i < path->Count(self->uri) && value == NULL; ++i) {
     const char* s = path->Directory(self->pattern, i);
-    if (IsNamedParameter(s) && strings->Equals(key, &s[1])) value = path->Directory(self->uri, i);
+    if (IsNamedParameter(s) && strings->Equals(key, &s[1])) value = path->Directory(self->uri, i + 1);
   }
   return value;
 }
