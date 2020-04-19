@@ -8,6 +8,7 @@ include_directories(
 add_library(
     linc
     client/client_base.c
+    client/default_client.c
     request/default_request.c
     request/http_method_request.c
     request/request_base.c
