@@ -19,6 +19,7 @@ add_library(
     router/router_base.c
     server/default_server.c
     server/server_base.c
+    util/name_resolution_helper.c
     pdns.c
     phttp.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
