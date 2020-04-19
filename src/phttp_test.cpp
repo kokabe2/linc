@@ -47,14 +47,15 @@ class PhttpTest : public ::testing::Test {
  protected:
   Response res;
 
-  virtual void SetUp() {
-    memset(buf, 0, sizeof(buf));
+  static void SetUpTestCase() {
     phttp->Handle("api.test.domain/v1/sample", PostHandlerSpy);
     phttp->Handle("api.test.domain/v1/users/:username/reports", PutHandlerSpy);
     phttp->Handle("api.test.domain/v1/users/:username/reports/:id", GetHandlerSpy);
     phttp->Handle("api.test.domain/v1/users/:username/messages/:id", DeleteHandlerSpy);
     phttp->ListenAndServe("", NULL);
   }
+
+  virtual void SetUp() { memset(buf, 0, sizeof(buf)); }
 
   virtual void TearDown() { res->Delete(&res); }
 };
