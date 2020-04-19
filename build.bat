@@ -10,6 +10,7 @@ set OUTPUT_DIR=bin\%COMPILER%@%PROJECT_VER%
 mkdir %OUTPUT_DIR% > NUL 2>&1
 %COMPILER% -output=obj -lang=c99 -nostuff -isa=rxv3 -debug -signed_char ^
            -include=v1/,src/,external/ ^
+           src/client/client_base.c ^
            src/request/default_request.c ^
            src/request/http_method_request.c ^
            src/request/request_base.c ^
