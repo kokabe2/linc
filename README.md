@@ -34,8 +34,8 @@ void main(void) {
 #### Advanced
 
 ```c
-#include "linc/v1/basic_server.h"
-#include "linc/v1/simple_router.h"
+#include "linc/v1/default_server.h"
+#include "linc/v1/default_router.h"
 
 static void handler1(Request req, Responder r) {
   // Do something
@@ -46,10 +46,10 @@ static void handler2(Request req, Responder r) {
 }
 
 void main(void) {
-  Router router = simpleRouter->New();
+  Router router = defaultRouter->New();
   router->GET(router, "/v1/sample", handler1);
   router->PUT(router, "/v1/users/:id", handler2);
-  Server server = basicServer->New("api.test.domain", router);
+  Server server = defaultServer->New("api.test.domain", router);
   RuntimeError e = server->ListenAndServe(server);
   if (e != NULL) log.Fatal(e);
 }
@@ -73,7 +73,7 @@ void main(void) {
 
 ```c
 #include "linc/v1/http_method_request.h"
-#include "linc/v1/simple_client.h"
+#include "linc/v1/default_client.h"
 #include "test_responder.h"
 #include "sample_resource.h"
 
@@ -85,7 +85,21 @@ void main(void) {
   SampleRequestStruct body = {6, "param"};
   Request req = httpMethodRequest->New("POST", "api.test.domain/v1/sample", &body);
   Responder r = testResponder->New();
-  Client client = simpleClient->New(r);
+  Client client = defaultClient->New(r);
   client->Do(client, req);
 }
+```
+
+### URI
+
+#### Structure
+
+```c
+[Domain]/[API Version]/[Path]
+```
+
+#### Example
+
+```c
+api.test.domain/v1/sample/foo
 ```
