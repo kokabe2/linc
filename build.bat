@@ -20,6 +20,7 @@ mkdir %OUTPUT_DIR% > NUL 2>&1
            src/response/simple_response.c ^
            src/router/default_router.c ^
            src/router/router_base.c ^
+           src/server/server_base.c ^
            src/phttp.c
 if %errorlevel% neq 0 exit /b
 
