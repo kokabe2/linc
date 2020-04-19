@@ -83,8 +83,7 @@ inline static Response HttpMethodTemplate(const char* method, const char* uri, c
   Phttp self = GetInstance();
   HandlerNode node = list->Find(self->handlers, uri);
   if (node != NULL) {
-    Request req = defaultRequest->New(method, uri, node->uri);
-    defaultRequest->SetBody(req, body);
+    Request req = defaultRequest->New(method, uri, node->uri, body);
     Response res = defaultResponse->New();
     Responder r = defaultResponder->New(res);
     node->handler(req, r);
