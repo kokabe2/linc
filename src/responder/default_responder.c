@@ -3,6 +3,7 @@
 #include "responder/default_responder.h"
 
 #include "bleu/v1/heap.h"
+#include "response/response_base.h"
 
 typedef struct {
   ResponderInterfaceStruct impl;

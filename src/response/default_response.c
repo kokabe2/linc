@@ -3,10 +3,12 @@
 #include "response/default_response.h"
 
 #include "bleu/v1/heap.h"
+#include "response/response_base_protected.h"
 
 static Response New(void) {
-  Response self = responseBase->New();
-  return self;
+  ResponseBase self = heap->New(sizeof(ResponseBaseStruct));
+  _responseBase->Super(self);
+  return (Response)self;
 }
 
 static const DefaultResponseMethodStruct kTheMethod = {

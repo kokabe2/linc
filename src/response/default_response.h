@@ -3,10 +3,10 @@
 #ifndef SRC_RESPONSE_DEFAULT_RESPONSE_H_
 #define SRC_RESPONSE_DEFAULT_RESPONSE_H_
 
-#include "response/response_base.h"
+#include "response.h"
 
 typedef struct {
-  Response (*New)(void);  // Extends ResponseBase
+  Response (*New)(void);  //
 } DefaultResponseMethodStruct;
 typedef const DefaultResponseMethodStruct* DefaultResponseMethod;
 

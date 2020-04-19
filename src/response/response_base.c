@@ -3,17 +3,12 @@
 #include "response/response_base.h"
 
 #include "bleu/v1/heap.h"
-
-typedef struct {
-  ResponseInterfaceStruct impl;
-  int status_code;
-  void* body;
-  DeleteDelegate Delete;
-} ResponseBaseStruct, *ResponseBase;
+#include "phttp_status_code.h"
+#include "response/response_base_protected.h"
 
 static void Delete(Response* base) {
   ResponseBase self = (ResponseBase)*base;
-  self->Delete(&self->body);
+  self->DeleteBody(&self->body);
   heap->Delete((void**)base);
 }
 
@@ -23,24 +18,27 @@ static const void* GetBody(Response self) { return ((ResponseBase)self)->body; }
 
 static void DummyDeleter(void** body) {}
 
-static Response New(void) {
-  ResponseBase self = heap->New(sizeof(ResponseBaseStruct));
+static void Super(ResponseBase self) {
   self->impl.Delete = Delete;
   self->impl.GetStatusCode = GetStatusCode;
   self->impl.GetBody = GetBody;
-  self->status_code = 200;
-  self->Delete = DummyDeleter;
-  return (Response)self;
+  self->status_code = kStatusOK;
+  self->DeleteBody = DummyDeleter;
 }
+
+static const ResponseBaseProtectedMethodStruct kProtectedMethod = {
+    .Super = Super,
+};
+
+const ResponseBaseProtectedMethod _responseBase = &kProtectedMethod;
 
 static void SetStatusCode(Response self, int status_code) { ((ResponseBase)self)->status_code = status_code; }
 
 static void SetBody(Response self, void* body) { ((ResponseBase)self)->body = body; }
 
-static void SetBodyDeleter(Response self, DeleteDelegate delegate) { ((ResponseBase)self)->Delete = delegate; }
+static void SetBodyDeleter(Response self, DeleteDelegate delegate) { ((ResponseBase)self)->DeleteBody = delegate; }
 
 static const ResponseBaseMethodStruct kTheMethod = {
-    .New = New,
     .SetStatusCode = SetStatusCode,
     .SetBody = SetBody,
     .SetBodyDeleter = SetBodyDeleter,

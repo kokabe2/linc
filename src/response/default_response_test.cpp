@@ -4,6 +4,7 @@
 
 extern "C" {
 #include "response/default_response.h"
+#include "response/response_base.h"
 }
 
 namespace {

@@ -3,10 +3,10 @@
 #ifndef SRC_RESPONSE_SIMPLE_RESPONSE_H_
 #define SRC_RESPONSE_SIMPLE_RESPONSE_H_
 
-#include "response/response_base.h"
+#include "response.h"
 
 typedef struct {
-  Response (*New)(int status_code);  // Extends ResponseBase
+  Response (*New)(int status_code);  //
 } SimpleResponseMethodStruct;
 typedef const SimpleResponseMethodStruct* SimpleResponseMethod;
 

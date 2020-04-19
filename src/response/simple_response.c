@@ -3,11 +3,13 @@
 #include "response/simple_response.h"
 
 #include "bleu/v1/heap.h"
+#include "response/response_base_protected.h"
 
 static Response New(int status_code) {
-  Response self = responseBase->New();
-  responseBase->SetStatusCode(self, status_code);
-  return self;
+  ResponseBase self = heap->New(sizeof(ResponseBaseStruct));
+  _responseBase->Super(self);
+  responseBase->SetStatusCode((Response)self, status_code);
+  return (Response)self;
 }
 
 static const SimpleResponseMethodStruct kTheMethod = {

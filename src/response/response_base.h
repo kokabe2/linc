@@ -6,9 +6,7 @@
 #include "bleu/v1/delegate_definition.h"
 #include "response.h"
 
-
 typedef struct {
-  Response (*New)(void);
   void (*SetStatusCode)(Response self, int status_code);
   void (*SetBody)(Response self, void* body);
   void (*SetBodyDeleter)(Response self, DeleteDelegate delegate);
