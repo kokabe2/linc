@@ -7,6 +7,8 @@ include_directories(
 
 add_library(
     linc
+    client/client_base.c
+    client/default_client.c
     request/default_request.c
     request/http_method_request.c
     request/request_base.c
@@ -19,6 +21,7 @@ add_library(
     router/router_base.c
     server/default_server.c
     server/server_base.c
+    util/name_resolution_helper.c
     pdns.c
     phttp.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
@@ -32,6 +35,7 @@ add_library(
 add_executable(
     gtests
     main.cpp
+    client/default_client_test.cpp
     request/default_request_test.cpp
     request/http_method_request_test.cpp
     responder/default_responder_test.cpp
