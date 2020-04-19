@@ -72,6 +72,8 @@ class DefaultServerTest : public ::testing::Test {
 
 TEST_F(DefaultServerTest, GetDomain) { EXPECT_STREQ("api.test.domain", serverBase->GetDomain(server)); }
 
+TEST_F(DefaultServerTest, GetRouter) { EXPECT_EQ(router, serverBase->GetRouter(server)); }
+
 TEST_F(DefaultServerTest, Post) {
   req = httpMethodRequest->New("POST", "api.test.domain/v1/sample", dummy_data);
 

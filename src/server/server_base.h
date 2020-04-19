@@ -5,10 +5,12 @@
 
 #include "request.h"
 #include "responder.h"
+#include "router/router_base.h"
 #include "server.h"
 
 typedef struct {
   const char* (*GetDomain)(Server self);
+  Router (*GetRouter)(Server self);
   void (*DoPost)(Server self, Request req, Responder r);
   void (*DoPut)(Server self, Request req, Responder r);
   void (*DoGet)(Server self, Request req, Responder r);
