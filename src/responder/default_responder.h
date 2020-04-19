@@ -4,10 +4,10 @@
 #define SRC_RESPONDER_DEFAULT_RESPONDER_H_
 
 #include "responder.h"
-#include "response/response_base.h"
+#include "response.h"
 
 typedef struct {
-  Responder (*New)(Response res);  // Use ResponseBase class.
+  Responder (*New)(Response res);  //
 } DefaultResponderMethodStruct;
 typedef const DefaultResponderMethodStruct* DefaultResponderMethod;
 

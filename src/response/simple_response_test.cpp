@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "simple_response.h"
+#include "response/simple_response.h"
 }
 
 class SimpleResponseTest : public ::testing::Test {

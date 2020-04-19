@@ -6,8 +6,7 @@
 #include "request.h"
 
 typedef struct {
-  Request (*New)(const char* method, const char* uri, const char* pattern);
-  void (*SetBody)(Request self, const void* body);
+  Request (*New)(const char* method, const char* uri, const char* pattern, const void* body);
 } DefaultRequestMethodStruct;
 typedef const DefaultRequestMethodStruct* DefaultRequestMethod;
 

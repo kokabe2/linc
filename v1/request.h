@@ -8,7 +8,7 @@ typedef struct RequestInterfaceStruct {
   void (*Delete)(Request* self);
   const char* (*GetUri)(Request self);
   const char* (*GetDomain)(Request self);
-  const char* (*GetApiVersion)(Request self);
+  const char* (*GetPath)(Request self);
   const char* (*GetMethod)(Request self);
   const void* (*GetBody)(Request self);
   const char* (*GetParam)(Request self, const char* key);

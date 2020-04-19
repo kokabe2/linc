@@ -3,7 +3,8 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "default_responder.h"
+#include "responder/default_responder.h"
+#include "response/default_response.h"
 }
 
 namespace {
@@ -21,7 +22,7 @@ class DefaultResponderTest : public ::testing::Test {
   virtual void SetUp() {
     was_ran = false;
     sent = false;
-    res = responseBase->New();
+    res = defaultResponse->New();
     r = defaultResponder->New(res);
   }
 

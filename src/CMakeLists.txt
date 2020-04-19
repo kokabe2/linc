@@ -8,9 +8,18 @@ include_directories(
 add_library(
     linc
     request/default_request.c
+    request/http_method_request.c
+    request/request_base.c
     responder/default_responder.c
+    responder/responder_base.c
+    response/default_response.c
     response/response_base.c
     response/simple_response.c
+    router/default_router.c
+    router/router_base.c
+    server/default_server.c
+    server/server_base.c
+    pdns.c
     phttp.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/gcc/heap.c
     ${PROJECT_SOURCE_DIR}/external/bleu/src/heap/heap_usage.c
@@ -24,9 +33,13 @@ add_executable(
     gtests
     main.cpp
     request/default_request_test.cpp
+    request/http_method_request_test.cpp
     responder/default_responder_test.cpp
-    response/response_base_test.cpp
+    response/default_response_test.cpp
     response/simple_response_test.cpp
+    router/default_router_test.cpp
+    server/default_server_test.cpp
+    pdns_test.cpp
     phttp_test.cpp
     )
 

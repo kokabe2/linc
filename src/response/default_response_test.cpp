@@ -3,7 +3,8 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "response_base.h"
+#include "response/default_response.h"
+#include "response/response_base.h"
 }
 
 namespace {
@@ -12,13 +13,13 @@ void* given_body;
 void DeleteSpy(void** body) { given_body = *body; }
 }  // namespace
 
-class ResponseBaseTest : public ::testing::Test {
+class DefaultResponseTest : public ::testing::Test {
  protected:
   Response res;
 
   virtual void SetUp() {
     given_body = NULL;
-    res = responseBase->New();
+    res = defaultResponse->New();
   }
 
   virtual void TearDown() {
@@ -26,17 +27,17 @@ class ResponseBaseTest : public ::testing::Test {
   }
 };
 
-TEST_F(ResponseBaseTest, GetStatusCodeBeforeSet) { EXPECT_EQ(200, res->GetStatusCode(res)); }
+TEST_F(DefaultResponseTest, GetStatusCodeBeforeSet) { EXPECT_EQ(200, res->GetStatusCode(res)); }
 
-TEST_F(ResponseBaseTest, GetBodyBeforeSet) { EXPECT_EQ(NULL, res->GetBody(res)); }
+TEST_F(DefaultResponseTest, GetBodyBeforeSet) { EXPECT_EQ(NULL, res->GetBody(res)); }
 
-TEST_F(ResponseBaseTest, SetStatusCode) {
+TEST_F(DefaultResponseTest, SetStatusCode) {
   responseBase->SetStatusCode(res, 404);
 
   EXPECT_EQ(404, res->GetStatusCode(res));
 }
 
-TEST_F(ResponseBaseTest, SetBody) {
+TEST_F(DefaultResponseTest, SetBody) {
   char dummy_data[8];
 
   responseBase->SetBody(res, dummy_data);
@@ -44,7 +45,7 @@ TEST_F(ResponseBaseTest, SetBody) {
   EXPECT_EQ(dummy_data, res->GetBody(res));
 }
 
-TEST_F(ResponseBaseTest, SetBodyDeleter) {
+TEST_F(DefaultResponseTest, SetBodyDeleter) {
   char dummy_data[8];
   responseBase->SetBody(res, dummy_data);
 

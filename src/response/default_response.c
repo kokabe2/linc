@@ -1,19 +1,18 @@
 ﻿// Copyright(c) 2020 Ken Okabe
 // This software is released under the MIT License, see LICENSE.
-#include "response/simple_response.h"
+#include "response/default_response.h"
 
 #include "bleu/v1/heap.h"
 #include "response/response_base_protected.h"
 
-static Response New(int status_code) {
+static Response New(void) {
   ResponseBase self = heap->New(sizeof(ResponseBaseStruct));
   _responseBase->Super(self);
-  responseBase->SetStatusCode((Response)self, status_code);
   return (Response)self;
 }
 
-static const SimpleResponseMethodStruct kTheMethod = {
+static const DefaultResponseMethodStruct kTheMethod = {
     .New = New,
 };
 
-const SimpleResponseMethod simpleResponse = &kTheMethod;
+const DefaultResponseMethod defaultResponse = &kTheMethod;
