@@ -3,6 +3,7 @@
 #include "server/server_base.h"
 
 #include "bleu/v1/heap.h"
+#include "pdns.h"
 #include "phttp_status_code.h"
 #include "server/server_base_protected.h"
 
@@ -12,7 +13,10 @@ static void Delete(Server* self) {
   heap->Delete((void**)self);
 }
 
-static RuntimeError ListenAndServe(Server self) { return NULL; }
+static RuntimeError ListenAndServe(Server self) {
+  pdns->Register(self);
+  return NULL;
+}
 
 static void Super(ServerBase self, const char* domain, Router router) {
   self->impl.Delete = Delete;
